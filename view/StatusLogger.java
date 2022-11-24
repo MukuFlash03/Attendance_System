@@ -1,4 +1,4 @@
-package edu.asu.agupt385.cse564.assignment4;
+package view;
 
 import javax.swing.JLabel;
 import javax.swing.*;

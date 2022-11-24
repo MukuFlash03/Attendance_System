@@ -1,4 +1,4 @@
-package edu.asu.agupt385.cse564.assignment4;
+package view;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -9,13 +9,15 @@ import java.util.LinkedHashMap;
 public class MenuPanel {
 
     JMenuBar menuBar;
-    JMenuItem[] options = new JMenuItem[4];
+    JMenuItem[] options = new JMenuItem[5];
     JMenu[] choices = new JMenu[2];
     
     LinkedHashMap<String, String[]> menuTitles = new LinkedHashMap<String, String[]>() {{
-        put("File", new String[] {"New Diagram", "Save Diagram", "Load Diagram"});
-        put("Help", new String[] {"View Team Details"});
+        put("File", new String[] {"Load Roster", "Add Attendance", "Save Data", "Plot Data"});
+        put("About", new String[] {"View Team Details"});
     }};
+
+    String[] teamInfo = {"Aniket Agrawal (ID)", "Krithish Goli (ID)", "Mukul C. Mahadik (1225422926) mmahadik@asu.edu", "Sarvesh Kapse (ID)", "Shrinkhala Kayastha (ID)"};
     
     public MenuPanel() {
 
@@ -38,5 +40,9 @@ public class MenuPanel {
 
     public JMenuBar getMenuBar() {
         return menuBar;
+    }
+
+    public String[] getTeamInfo() {
+        return teamInfo;
     }
 }

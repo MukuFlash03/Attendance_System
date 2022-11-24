@@ -1,4 +1,6 @@
-package edu.asu.agupt385.cse564.assignment4;
+package controller;
+
+import view.ApplicationGUI;
 
 import javax.swing.SwingUtilities;
 

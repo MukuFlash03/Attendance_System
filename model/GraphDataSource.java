@@ -1,20 +1,18 @@
-package edu.asu.agupt385.cse564.assignment4;
+package model;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Observable;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentSkipListSet;
-import java.util.stream.Collectors;
 
 public class GraphDataSource extends Observable {
     private static volatile GraphDataSource INSTANCE;
 
-    private final Map<Vertex, Set<Edge>> graph;
+    private final List<Student> studentRoster;
 
     private GraphDataSource() {
-        this.graph = new ConcurrentHashMap<>();
+        this.studentRoster = new ArrayList<Student>();
     }
 
     public static GraphDataSource getInstance() {
@@ -28,46 +26,31 @@ public class GraphDataSource extends Observable {
         return INSTANCE;
     }
 
-    public void addVertex(Vertex v) {
-        graph.put(v, new ConcurrentSkipListSet<>());
+    public void addStudent(Student stud) {
+        studentRoster.add(stud);
+    }
+
+    
+    public void fileParsed() {
         this.setChanged();
         this.notifyObservers();
     }
 
-    public void addEdge(Edge e) {
-        graph.get(e.getSource()).add(e);
-        this.setChanged();
-        this.notifyObservers();
+    public boolean hasStudent(Student stud) {
+        return studentRoster.contains(stud);
     }
 
-    public boolean hasVertex(Vertex v) {
-        return graph.containsKey(v);
+
+    public int getStudentCount() {
+        return studentRoster.size();
     }
 
-    public boolean hasEdge(Edge e) {
-        return graph.get(e.getSource()).contains(e);
+    public List<Student> getStudents() {
+        return studentRoster;
     }
 
-    public Set<Vertex> getAllVertices() {
-        return new HashSet<>(graph.keySet());
+    public void clearRoster() {
+        studentRoster.removeAll(studentRoster);
     }
 
-    public Set<Edge> getEdges(Vertex v) {
-        return new HashSet<>(graph.get(v));
-    }
-
-    public Set<Edge> getAllEdges() {
-        return graph.values().stream().flatMap(adjacentEdges -> adjacentEdges.stream()).collect(Collectors.toSet());
-    }
-
-    public int getVertexCount() {
-        return graph.size();
-    }
-
-    public void updateVertex(Vertex v, int x, int y) {
-        Set<Edge> boxEdges = getEdges(v);
-        graph.remove(v);
-        v.move(x,y);
-        graph.put(v, boxEdges);
-    }
 }

@@ -1,4 +1,4 @@
-package edu.asu.agupt385.cse564.assignment4;
+package model;
 
 import java.awt.Graphics;
 import java.awt.Point;
