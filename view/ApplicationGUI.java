@@ -1,6 +1,7 @@
 package view;
 
 import model.GraphDataSource;
+import model.ParseAttendance;
 import model.ParseRoster;
 import model.Student;
 
@@ -83,11 +84,14 @@ public class ApplicationGUI extends JFrame implements ActionListener {
         
         if (e.getSource() == items[0])
             handleLoadRoster();
-        // else if (e.getSource() == items[1])
+        else if (e.getSource() == items[1])
+            handleAddAttendance();
         else if (e.getSource() == items[2])
             handleSaveData();
         else if (e.getSource() == items[4])
             handleTeamInfo();
+
+        tableData.getColumns();
     }
 
 
@@ -127,14 +131,18 @@ public class ApplicationGUI extends JFrame implements ActionListener {
     }
 
     public void handleLoadRoster() {
-        blackboard.clearRoster();
-        model = tableData.getTableModel();
-        model.setRowCount(0);
+        blackboard.setAction("Load");
 
         JFileChooser fc = new JFileChooser();
         fc.setMultiSelectionEnabled(false);
         int r = fc.showOpenDialog(null);
         if (r == JFileChooser.APPROVE_OPTION) {
+
+            blackboard.clearRoster();
+            model = tableData.getTableModel();
+            model.setRowCount(0);
+            model.setColumnCount(4);    
+
             File rosterFile = fc.getSelectedFile();
             statusBar.setMessage("Roster File loaded");
             ParseRoster parser = new ParseRoster();
@@ -148,6 +156,24 @@ public class ApplicationGUI extends JFrame implements ActionListener {
                 items[1].setEnabled(true);
             else if (blackboard.getStudents().isEmpty())
                 items[1].setEnabled(false);
+        }
+    }
+
+    public void handleAddAttendance() {
+
+        blackboard.setAction("Add");
+
+        JFileChooser fc = new JFileChooser();
+        fc.setMultiSelectionEnabled(true);
+        int r = fc.showOpenDialog(null);
+        if (r == JFileChooser.APPROVE_OPTION) {
+            File[] attendanceFiles = fc.getSelectedFiles();
+            statusBar.setMessage("Attendance Files loaded");
+            ParseAttendance parser = new ParseAttendance();
+            parser.parseAttendance(attendanceFiles);
+        }
+        else {
+            statusBar.setMessage("User cancelled the operation");
         }
     }
 

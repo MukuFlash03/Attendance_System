@@ -1,20 +1,15 @@
 package model;
 
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.util.Objects;
 
 public class Student {
-    // private final String name;
+    
     private final String id;
     private final String firstName;
     private final String lastName;
     private final String asurite;
 
-
-    // public Student(String id, String firstName, String lastName, String asurite) {
-        public Student(String[] data) {
+    public Student(String[] data) {
         this.id = data[0];
         this.firstName = data[1];
         this.lastName = data[2];

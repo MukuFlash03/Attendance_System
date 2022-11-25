@@ -1,18 +1,20 @@
 package model;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Observable;
 
 public class GraphDataSource extends Observable {
     private static volatile GraphDataSource INSTANCE;
 
     private final List<Student> studentRoster;
+    private final List<Attendance> attendances;
+
+    private String action = "";
 
     private GraphDataSource() {
         this.studentRoster = new ArrayList<Student>();
+        this.attendances = new ArrayList<Attendance>();
     }
 
     public static GraphDataSource getInstance() {
@@ -28,6 +30,10 @@ public class GraphDataSource extends Observable {
 
     public void addStudent(Student stud) {
         studentRoster.add(stud);
+    }
+
+    public void addAttendance(Attendance attend) {
+        attendances.add(attend);
     }
 
     
@@ -49,8 +55,20 @@ public class GraphDataSource extends Observable {
         return studentRoster;
     }
 
+    public List<Attendance> getAttendances() {
+        return attendances;
+    }
+
     public void clearRoster() {
         studentRoster.removeAll(studentRoster);
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
     }
 
 }

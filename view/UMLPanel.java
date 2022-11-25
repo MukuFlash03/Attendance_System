@@ -1,5 +1,6 @@
 package view;
 
+import model.Attendance;
 import model.GraphDataSource;
 import model.Student;
 import view.TablePane;
@@ -39,12 +40,30 @@ public class UMLPanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         if (o instanceof GraphDataSource) {
             List<Student> studs = ((GraphDataSource) o).getStudents();
+            List<Attendance> attendances = ((GraphDataSource) o).getAttendances();
 
             DefaultTableModel model = tableData.getTableModel();
 
-            studs.forEach(stud -> {
-               model.addRow(new Object[]{stud.getId(), stud.getFirstName(), stud.getLastName(), stud.getAsurite()});
-            });
+            String action = ((GraphDataSource) o).getAction();
+
+            tableData.setJTableColumnsWidth();
+
+            if (action.equals("Load")) {
+                studs.forEach(stud -> {
+                model.addRow(new Object[]{stud.getId(), stud.getFirstName(), stud.getLastName(), stud.getAsurite()});
+                });
+            }
+
+            if (action.equals("Add")) {
+                attendances.forEach(attend -> {
+                    String colDate = attend.getFormattedDate();
+                    if (!tableData.hasColumn(colDate))
+                        model.addColumn(colDate);
+                });
+            }
+
+            tableData.setJTableColumnsWidth();
+            // tableData.getJTable().setAutoCreateColumnsFromModel(false);
 
             tableData.getJSP().setPreferredSize(this.getSize());
             this.add(tableData.getJSP());
