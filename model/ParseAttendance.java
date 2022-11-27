@@ -79,19 +79,19 @@ public class ParseAttendance {
                     else {
                         System.out.println("L78 " + asurite + "\t" + studIDFlag);
                         attend.mergeStudentTime(asurite, minutes);
-                        attend.printAttendance();
+                        // attend.printAttendance();
                     }
                     // if (!attend.hasStudentTime(studIDFlag)) {
                     if (!attend.hasStudentTime2(asurite)) {
                         System.out.println("L82 " + asurite + "\t" + studIDFlag);
                         attend.addStudentTime(studIDFlag, asurite, minutes);
-                        attend.printAttendance2();
+                        // attend.printAttendance2();
                     }
                     // else if (attend.hasStudentTime(studIDFlag)) {
                     else {
                         System.out.println("L86 " + asurite + "\t" + studIDFlag);
                         attend.mergeStudentTime(studIDFlag, asurite, minutes);
-                        attend.printAttendance2();
+                        // attend.printAttendance2();
                     }
                 }
                 else
@@ -101,7 +101,8 @@ public class ParseAttendance {
             blackboard.setExtras(extraAttendees);
             myReader.close();
             attend.printAttendance();
-            attend.printAttendance2();
+            // attend.printAttendance2();
+            attend.getOrderedAttendance();
 		} catch (FileNotFoundException e) {
 			System.out.println("Error occurred in finding attendance file(s): " + e);
 			e.printStackTrace();

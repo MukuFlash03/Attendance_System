@@ -4,14 +4,19 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Objects;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.Vector;
+import java.util.Comparator;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class Attendance {
 
     private final Date date;
     private Map<String, Integer> attendMap;
     private Map<String, int[]> attendanceMap;
+    private SortedSet<String> sortedAttendance;
 
     public Attendance(Date date) {
         this.date = date;
@@ -98,17 +103,33 @@ public class Attendance {
         return attendanceMap.size();
     }
 
-    public Vector<Integer> getMinutes2() {
-        Vector<Integer> minutes = new Vector<Integer>();
-
-        for (int[] data : attendanceMap.values())
-            minutes.add(data[1]);
-        return minutes;
-    }
-
     public void printAttendance2() {
         for (String asurite : attendanceMap.keySet())
             System.out.println("ASURITE: " + asurite + "\tIndex: " + attendanceMap.get(asurite)[0] + "\t" + "Minutes: " + attendanceMap.get(asurite)[1]);
+
+        sortedAttendance.forEach(key -> System.out.println(
+            "Key : " + key  + "\t\t"  + 
+                    "Value : " + attendanceMap.get(key)[1]
+            ));        
+    }
+
+    public Vector<Integer> getOrderedAttendance() {
+
+        Vector<Integer> minutes = new Vector<Integer>();
+
+        sortedAttendance = new TreeSet<>(new Comparator<String>() {
+ 
+            @Override
+            public int compare(String str1, String str2) {
+                int comp = attendanceMap.get(str1)[0] - attendanceMap.get(str2)[0];
+                return comp == 0 ? 1 : comp;
+            }
+        });
+
+        sortedAttendance.addAll(attendanceMap.keySet());
+        sortedAttendance.forEach(key -> minutes.add(attendanceMap.get(key)[1]));
+
+        return minutes;
     }
     
 
