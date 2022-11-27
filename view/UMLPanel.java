@@ -58,7 +58,7 @@ public class UMLPanel extends JPanel implements Observer {
                 attendances.forEach(attend -> {
                     String colDate = attend.getFormattedDate();
                     if (!tableData.hasColumn(colDate))
-                        model.addColumn(colDate);
+                        model.addColumn(attend.getFormattedDate(), attend.getMinutes());
                 });
             }
 

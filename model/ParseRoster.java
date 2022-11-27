@@ -32,10 +32,10 @@ public class ParseRoster {
             myReader.close();
             blackboard.fileParsed();
 		} catch (FileNotFoundException e) {
-			System.out.println("Error occurred in finding roster file: "+e);
+			System.out.println("Error occurred in finding roster file: " + e);
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.out.println("Error occurred in parsing roster data: "+e);
+			System.out.println("Error occurred in parsing roster data: " + e);
 			e.printStackTrace();
 		}
 	}

@@ -28,6 +28,8 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.Vector;
+import java.util.Map;
+import java.util.HashMap;
 
 public class ApplicationGUI extends JFrame implements ActionListener {
 
@@ -91,7 +93,7 @@ public class ApplicationGUI extends JFrame implements ActionListener {
         else if (e.getSource() == items[4])
             handleTeamInfo();
 
-        tableData.getColumns();
+        // tableData.getColumns();
     }
 
 
@@ -171,6 +173,24 @@ public class ApplicationGUI extends JFrame implements ActionListener {
             statusBar.setMessage("Attendance Files loaded");
             ParseAttendance parser = new ParseAttendance();
             parser.parseAttendance(attendanceFiles);
+
+
+            JPanel dPane = new JPanel();
+            dPane.setLayout(new GridLayout(0,1));
+            JDialog d = new JDialog(this, "Attendance Loaded");
+
+            Map<String, Integer> extraAttendees = blackboard.getExtras();
+
+            JLabel label1 = new JLabel(extraAttendees.size() + " additional attendee(s) found: ");
+            dPane.add(label1);
+    
+            for (String asurite : extraAttendees.keySet()) {
+                JLabel label2 = new JLabel(asurite + " connected for " + blackboard.getExtras().get(asurite) + " minutes");
+                dPane.add(label2);
+            }
+            d.add(dPane);
+            d.setSize(500, 500);
+            d.setVisible(true);
         }
         else {
             statusBar.setMessage("User cancelled the operation");
