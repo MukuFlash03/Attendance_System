@@ -46,28 +46,29 @@ public class UMLPanel extends JPanel implements Observer {
 
             String action = ((GraphDataSource) o).getAction();
 
-            tableData.setJTableColumnsWidth();
+            // tableData.setJTableColumnsWidth();
 
-            if (action.equals("Load")) {
-                studs.forEach(stud -> {
-                model.addRow(new Object[]{stud.getId(), stud.getFirstName(), stud.getLastName(), stud.getAsurite()});
-                });
+            if (!action.equals("Plot")) {
+
+                if (action.equals("Load")) {
+                    studs.forEach(stud -> {
+                    model.addRow(new Object[]{stud.getId(), stud.getFirstName(), stud.getLastName(), stud.getAsurite()});
+                    });
+                }
+
+                if (action.equals("Add")) {
+                    attendances.forEach(attend -> {
+                        String colDate = attend.getFormattedDate();
+                        if (!tableData.hasColumn(colDate))
+                            model.addColumn(attend.getFormattedDate(), attend.getOrderedAttendance());
+                    });
+                }
+
+                tableData.setJTableColumnsWidth();
+
+                tableData.getJSP().setPreferredSize(this.getSize());
+                this.add(tableData.getJSP());
             }
-
-            if (action.equals("Add")) {
-                attendances.forEach(attend -> {
-                    String colDate = attend.getFormattedDate();
-                    if (!tableData.hasColumn(colDate))
-                        // model.addColumn(attend.getFormattedDate(), attend.getMinutes());
-                        model.addColumn(attend.getFormattedDate(), attend.getOrderedAttendance());
-                });
-            }
-
-            tableData.setJTableColumnsWidth();
-            // tableData.getJTable().setAutoCreateColumnsFromModel(false);
-
-            tableData.getJSP().setPreferredSize(this.getSize());
-            this.add(tableData.getJSP());
         }
     }
 }

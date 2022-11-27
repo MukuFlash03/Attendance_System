@@ -113,9 +113,10 @@ public class Attendance {
             ));        
     }
 
-    public Vector<Integer> getOrderedAttendance() {
+    public Vector<String> getOrderedAttendance() {
 
-        Vector<Integer> minutes = new Vector<Integer>();
+        // Vector<Integer> minutes = new Vector<Integer>();
+        Vector<String> minutes = new Vector<String>();
 
         sortedAttendance = new TreeSet<>(new Comparator<String>() {
  
@@ -127,7 +128,7 @@ public class Attendance {
         });
 
         sortedAttendance.addAll(attendanceMap.keySet());
-        sortedAttendance.forEach(key -> minutes.add(attendanceMap.get(key)[1]));
+        sortedAttendance.forEach(key -> minutes.add(Integer.toString(attendanceMap.get(key)[1])));
 
         return minutes;
     }
