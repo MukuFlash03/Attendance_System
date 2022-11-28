@@ -43,8 +43,6 @@ public class ApplicationGUI extends JFrame implements ActionListener {
 
     public ApplicationGUI(String title) {
         super(title);
-        // setLayout(new BorderLayout());
-        // setResizable(false);
         setResizable(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -54,9 +52,6 @@ public class ApplicationGUI extends JFrame implements ActionListener {
         this.setLocation(x, y);
         this.getContentPane().setBackground(Color.WHITE);
         setVisible(true);
-
-        // tableData = TablePane.getInstance();
-        // tableData.getJSP().setPreferredSize(screenSize);
 
         initialize();
     }
@@ -90,10 +85,10 @@ public class ApplicationGUI extends JFrame implements ActionListener {
             handleAddAttendance();
         else if (e.getSource() == items[2])
             handleSaveData();
+        else if (e.getSource() == items[3])
+            handlePlotData();
         else if (e.getSource() == items[4])
             handleTeamInfo();
-
-        // tableData.getColumns();
     }
 
 
@@ -130,6 +125,11 @@ public class ApplicationGUI extends JFrame implements ActionListener {
         d.add(dPane);
         d.setSize(500, 500);
         d.setVisible(true);
+    }
+
+    public void handlePlotData() {
+        blackboard.setAction("Plot");
+        blackboard.fileParsed();
     }
 
     public void handleLoadRoster() {
@@ -211,19 +211,19 @@ public class ApplicationGUI extends JFrame implements ActionListener {
             String DELIMITER = ",";
             String SEPARATOR = "\n";
             String HEADER = "";
-    
+
             model = tableData.getTableModel();
-    
+
             int numberRows = model.getRowCount();
             int numberColumns = model.getColumnCount();
             String[] headers = new String[numberColumns];
-    
+
             for (int i = 0; i < numberColumns; i++)
                 headers[i] =  model.getColumnName(i);
-    
+
             HEADER = String.join(DELIMITER + " ", headers);
             
-          
+            
             try
             {
                 FileWriter saveFileWrite = new FileWriter(rosterFile);
@@ -239,7 +239,7 @@ public class ApplicationGUI extends JFrame implements ActionListener {
                     saveFileWrite.append(SEPARATOR);
                 }
                 saveFileWrite.close();
-    
+
             } catch(Exception e) {
                 e.printStackTrace();
             }

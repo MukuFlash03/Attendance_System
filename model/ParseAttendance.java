@@ -67,31 +67,18 @@ public class ParseAttendance {
                 asurite = tokens[0].trim();
                 minutes = Integer.parseInt(tokens[1].trim());
                 studIDFlag = blackboard.hasAsurite(asurite);
-                System.out.println(asurite + "\t" + studIDFlag);
-                // if (blackboard.hasAsurite(asurite)) {
                 if (studIDFlag != -1) {
                     if (!attend.hasStudentTime(asurite)) {
-                        System.out.println("L74 " + asurite + "\t" + studIDFlag);
                         attend.addStudentTime(asurite, minutes);
-                        // attend.printAttendance();
                     }
-                    // else if (attend.hasStudentTime(asurite)) {
                     else {
-                        System.out.println("L78 " + asurite + "\t" + studIDFlag);
                         attend.mergeStudentTime(asurite, minutes);
-                        // attend.printAttendance();
                     }
-                    // if (!attend.hasStudentTime(studIDFlag)) {
                     if (!attend.hasStudentTime2(asurite)) {
-                        System.out.println("L82 " + asurite + "\t" + studIDFlag);
                         attend.addStudentTime(studIDFlag, asurite, minutes);
-                        // attend.printAttendance2();
                     }
-                    // else if (attend.hasStudentTime(studIDFlag)) {
                     else {
-                        System.out.println("L86 " + asurite + "\t" + studIDFlag);
                         attend.mergeStudentTime(studIDFlag, asurite, minutes);
-                        // attend.printAttendance2();
                     }
                 }
                 else
@@ -100,8 +87,6 @@ public class ParseAttendance {
             blackboard.addAttendance(attend);
             blackboard.setExtras(extraAttendees);
             myReader.close();
-            attend.printAttendance();
-            // attend.printAttendance2();
             attend.getOrderedAttendance();
 		} catch (FileNotFoundException e) {
 			System.out.println("Error occurred in finding attendance file(s): " + e);

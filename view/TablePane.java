@@ -15,7 +15,6 @@ public class TablePane {
     private DefaultTableModel model;
     private JTable dataTable;
     private TableColumnModel colModel;
-    // private String[] colNames = {"ID", "First Name", "Last Name", "ASURITE"};
 
     private List<String> colNames = new ArrayList<String>();
 
@@ -67,7 +66,6 @@ public class TablePane {
         for (int i = 0; i < colModel.getColumnCount(); i++) {
             TableColumn column = colModel.getColumn(i);
             column.setPreferredWidth(300);
-            // column.sizeWidthToFit();
         }
     }
 

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class GraphDataSource extends Observable {
     private static volatile GraphDataSource INSTANCE;
@@ -89,27 +90,8 @@ public class GraphDataSource extends Observable {
                 return studIDFlag;
             }
         }
-        // return false;
         return studIDFlag;
     }
-
-    /*
-    public int[] hasAsurite(String asurite) {
-        int[] studIDFlag = new int[2];
-        studIDFlag[0] = -1;
-        studIDFlag[1] = 0;
-        for (Student stud : studentRoster) {
-            if (asurite.equals(stud.getAsurite())) {
-                studIDFlag[0] = studentRoster.indexOf(stud);
-                studIDFlag[1] = 1;
-                // return true;
-                return studIDFlag;
-            }
-        }
-        // return false;
-        return studIDFlag;
-    }
-    */
 
     public void setExtras(Map<String, Integer> extraAttendees) {
         this.extraAttendees = extraAttendees;
@@ -119,4 +101,14 @@ public class GraphDataSource extends Observable {
         return extraAttendees;
     }
 
+    public LinkedHashMap<String, Integer> getAttendanceCount() {
+        LinkedHashMap<String, Integer> attendCount = new LinkedHashMap<String, Integer>();
+
+        for (Attendance attend : attendances) {
+            attendCount.put(attend.getFormattedDate(), attend.getOrderedAttendanceCount());
+            System.out.println("Date: " + attend.getFormattedDate() + "\tStudent Count: " + attend.getOrderedAttendanceCount());
+        }
+
+        return attendCount;
+    }
 }

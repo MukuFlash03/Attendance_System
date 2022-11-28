@@ -100,7 +100,7 @@ public class Attendance {
     }
 
     public int getOrderedAttendanceCount() {
-        return attendanceMap.size();
+        return sortedAttendance.size();
     }
 
     public void printAttendance2() {
@@ -115,7 +115,6 @@ public class Attendance {
 
     public Vector<String> getOrderedAttendance() {
 
-        // Vector<Integer> minutes = new Vector<Integer>();
         Vector<String> minutes = new Vector<String>();
 
         sortedAttendance = new TreeSet<>(new Comparator<String>() {
