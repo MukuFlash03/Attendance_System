@@ -106,7 +106,7 @@ public class GraphDataSource extends Observable {
 
         for (Attendance attend : attendances) {
             attendCount.put(attend.getFormattedDate(), attend.getOrderedAttendanceCount());
-            System.out.println("Date: " + attend.getFormattedDate() + "\tStudent Count: " + attend.getOrderedAttendanceCount());
+            // System.out.println("Date: " + attend.getFormattedDate() + "\tStudent Count: " + attend.getOrderedAttendanceCount());
         }
 
         return attendCount;

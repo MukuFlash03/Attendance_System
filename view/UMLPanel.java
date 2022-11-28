@@ -139,10 +139,6 @@ public class UMLPanel extends JPanel implements Observer {
         yMid = (double)(yVal - yLowData) / (yHighData - yLowData);
         yNorm = (yMid * (yHighPixel - yLowPixel)) + yLowPixel;
 
-        System.out.println(yMid);
-        System.out.println(yNorm);
-        System.out.println();
-
         return yNorm;
     }
 
@@ -164,7 +160,6 @@ public class UMLPanel extends JPanel implements Observer {
             for (String date : coordinates.keySet()) {
                 int x1 = (int)coordinates.get(date).getX();
                 int y1 = (int)coordinates.get(date).getY();
-                System.out.println(y1);
 
                 g2.drawLine(x1, yLowPixel, x1, y1);
             }

@@ -17,7 +17,12 @@ public class MenuPanel {
         put("About", new String[] {"View Team Details"});
     }};
 
-    String[] teamInfo = {"Aniket Agrawal (ID)", "Krithish Goli (ID)", "Mukul C. Mahadik (1225422926) mmahadik@asu.edu", "Sarvesh Kapse (ID)", "Shrinkhala Kayastha (ID)"};
+    String[] teamInfo = {   "Product Owner: Mukul C. Mahadik (mmahadik@asu.edu)", 
+                            "Backend Developer: Aniket Agrawal (aagraw82@asu.edu)", 
+                            "Backend Developer: Krithish Goli (kgoli1@asu.edu)", 
+                            "Frontend Developer: Sarvesh Kapse (skapse@asu.edu)", 
+                            "Design Architect: Shrinkhala Kayastha (skayast1@asu.edu)"
+                        };
     
     public MenuPanel() {
 
