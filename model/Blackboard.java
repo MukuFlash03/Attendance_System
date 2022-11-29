@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class GraphDataSource extends Observable {
-    private static volatile GraphDataSource INSTANCE;
+public class Blackboard extends Observable {
+    private static volatile Blackboard INSTANCE;
 
     private final List<Student> studentRoster;
     private final List<Attendance> attendances;
@@ -18,17 +18,17 @@ public class GraphDataSource extends Observable {
 
     private String action = "";
 
-    private GraphDataSource() {
+    private Blackboard() {
         this.studentRoster = new ArrayList<Student>();
         this.attendances = new ArrayList<Attendance>();
         this.extraAttendees = new HashMap<String, Integer>();
     }
 
-    public static GraphDataSource getInstance() {
+    public static Blackboard getInstance() {
         if (INSTANCE == null) {
-            synchronized (GraphDataSource.class) {
+            synchronized (Blackboard.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = new GraphDataSource();
+                    INSTANCE = new Blackboard();
                 }
             }
         }
@@ -106,7 +106,6 @@ public class GraphDataSource extends Observable {
 
         for (Attendance attend : attendances) {
             attendCount.put(attend.getFormattedDate(), attend.getOrderedAttendanceCount());
-            // System.out.println("Date: " + attend.getFormattedDate() + "\tStudent Count: " + attend.getOrderedAttendanceCount());
         }
 
         return attendCount;

@@ -4,7 +4,8 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Objects;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.Vector;
 import java.util.Comparator;
@@ -17,11 +18,13 @@ public class Attendance {
     private Map<String, Integer> attendMap;
     private Map<String, int[]> attendanceMap;
     private SortedSet<String> sortedAttendance;
+    private Blackboard blackboard;
 
     public Attendance(Date date) {
         this.date = date;
         this.attendMap =  new ConcurrentHashMap<>();
         this.attendanceMap = new ConcurrentHashMap<String, int[]>();
+        this.blackboard = Blackboard.getInstance();
     }
 
     public Date getDate() {
@@ -115,6 +118,7 @@ public class Attendance {
 
     public Vector<String> getOrderedAttendance() {
 
+        Vector<String> minutesOld = new Vector<String>();
         Vector<String> minutes = new Vector<String>();
 
         sortedAttendance = new TreeSet<>(new Comparator<String>() {
@@ -127,10 +131,31 @@ public class Attendance {
         });
 
         sortedAttendance.addAll(attendanceMap.keySet());
-        sortedAttendance.forEach(key -> minutes.add(Integer.toString(attendanceMap.get(key)[1])));
+        sortedAttendance.forEach(key -> minutesOld.add(Integer.toString(attendanceMap.get(key)[1])));
 
+        minutes = updateMinutes(minutesOld);
         return minutes;
     }
+
+
+    public Vector<String> updateMinutes(Vector<String> minutesOld) {
+        int i = 0;
+        Vector<String> minutes = minutesOld;
+
+        List<String> keys = new ArrayList<String>();
+        for (String key : sortedAttendance)
+            keys.add(key);
+
+        for (Student stud : blackboard.getStudents()) {
+            String str = stud.getAsurite();
+            if (!keys.contains(str)) {
+                minutes.add(i, null);
+            }
+            i++;
+        }
+        return minutes;
+    }
+
     
 
     @Override

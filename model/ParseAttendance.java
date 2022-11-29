@@ -9,8 +9,6 @@ import java.io.FileNotFoundException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -19,13 +17,13 @@ public class ParseAttendance {
 
     private Scanner myReader;
 
-    private GraphDataSource blackboard;
+    private Blackboard blackboard;
     private TablePane tableData;
 
     private Map<String, Integer> extraAttendees;
 
     public ParseAttendance() {
-        this.blackboard = GraphDataSource.getInstance();
+        this.blackboard = Blackboard.getInstance();
         this.tableData = TablePane.getInstance();
         this.extraAttendees = new HashMap<String, Integer>();
     }
@@ -87,7 +85,6 @@ public class ParseAttendance {
             blackboard.addAttendance(attend);
             blackboard.setExtras(extraAttendees);
             myReader.close();
-            attend.getOrderedAttendance();
 		} catch (FileNotFoundException e) {
 			System.out.println("Error occurred in finding attendance file(s): " + e);
 			e.printStackTrace();

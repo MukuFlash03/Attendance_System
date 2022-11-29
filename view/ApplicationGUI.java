@@ -1,6 +1,6 @@
 package view;
 
-import model.GraphDataSource;
+import model.Blackboard;
 import model.ParseAttendance;
 import model.ParseRoster;
 import model.Student;
@@ -36,7 +36,7 @@ public class ApplicationGUI extends JFrame implements ActionListener {
     StatusLogger statusBar;
     MenuPanel menu;
     UMLPanel rightPanel;
-    GraphDataSource blackboard;
+    Blackboard blackboard;
     TablePane tableData;
     DefaultTableModel model;
     JMenuItem[] items;
@@ -58,7 +58,7 @@ public class ApplicationGUI extends JFrame implements ActionListener {
 
     private void initialize() {
 
-        blackboard = GraphDataSource.getInstance();
+        blackboard = Blackboard.getInstance();
         tableData = TablePane.getInstance();
         rightPanel = new UMLPanel();
         blackboard.addObserver(rightPanel);

@@ -1,10 +1,9 @@
 package view;
 
 import model.Attendance;
-import model.GraphDataSource;
+import model.Blackboard;
 import model.Student;
 import model.Coordinate;
-import view.TablePane;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -16,7 +15,6 @@ import java.awt.Dimension;
 import java.util.Observer;
 import java.util.Observable;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -61,13 +59,13 @@ public class UMLPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        if (o instanceof GraphDataSource) {
-            List<Student> studs = ((GraphDataSource) o).getStudents();
-            List<Attendance> attendances = ((GraphDataSource) o).getAttendances();
+        if (o instanceof Blackboard) {
+            List<Student> studs = ((Blackboard) o).getStudents();
+            List<Attendance> attendances = ((Blackboard) o).getAttendances();
 
             DefaultTableModel model = tableData.getTableModel();
 
-            String action = ((GraphDataSource) o).getAction();
+            String action = ((Blackboard) o).getAction();
 
             if (!action.equals("Plot")) {
 
@@ -93,8 +91,7 @@ public class UMLPanel extends JPanel implements Observer {
 
             if (action.equals("Plot")) {
                 this.remove(tableData.getJSP());
-                // LinkedHashMap<String, Integer> attendCount = ((GraphDataSource)o).getAttendanceCount();
-                attendCount = ((GraphDataSource)o).getAttendanceCount();
+                attendCount = ((Blackboard)o).getAttendanceCount();
                 coordinates = generateCoordinates(attendCount);
 
                 repaint();

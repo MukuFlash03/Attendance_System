@@ -10,10 +10,10 @@ public class ParseRoster {
 
     private Scanner myReader;
 
-    private GraphDataSource blackboard;
+    private Blackboard blackboard;
     
     public ParseRoster() {
-        this.blackboard = GraphDataSource.getInstance();
+        this.blackboard = Blackboard.getInstance();
     }
 
     public void parseRosterFile(File file) {
