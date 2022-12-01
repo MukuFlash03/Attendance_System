@@ -3,7 +3,6 @@ package view;
 import model.Blackboard;
 import model.ParseAttendance;
 import model.ParseRoster;
-import model.Student;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,18 +23,26 @@ import java.awt.Container;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.io.File;
-import java.util.Scanner;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.Vector;
 import java.util.Map;
-import java.util.HashMap;
+
+/**
+ * This class generates the principal frame window for the app.
+ * Objects for relevant classes have been used to handle 
+ * various menu operations in an efficient manner.
+ * 
+ *
+ * @author Shrinkhala Kayastha
+ * @author Mukul Mahadik
+ * @version 1.0
+ */
 
 public class ApplicationGUI extends JFrame implements ActionListener {
 
     StatusLogger statusBar;
     MenuPanel menu;
-    UMLPanel rightPanel;
+    DisplayPanel rightPanel;
     Blackboard blackboard;
     TablePane tableData;
     DefaultTableModel model;
@@ -56,11 +63,14 @@ public class ApplicationGUI extends JFrame implements ActionListener {
         initialize();
     }
 
+    /**
+     * Initializes JFrame menu, panel components.
+     */
     private void initialize() {
 
         blackboard = Blackboard.getInstance();
         tableData = TablePane.getInstance();
-        rightPanel = new UMLPanel();
+        rightPanel = new DisplayPanel();
         blackboard.addObserver(rightPanel);
         statusBar = StatusLogger.getInstance();
         menu = new MenuPanel();
@@ -74,6 +84,11 @@ public class ApplicationGUI extends JFrame implements ActionListener {
             items[1].setEnabled(false);
     }
 
+    
+    /** 
+     * Handles action events triggered as per the menu options
+     * @param e Stores current action event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String choice = e.getActionCommand();
@@ -92,7 +107,13 @@ public class ApplicationGUI extends JFrame implements ActionListener {
     }
 
 
-    public void addComponentsToPane(Container pane, UMLPanel rightPanel) {
+    
+    /** 
+     * Adds the various GUI components to the JFrame
+     * @param pane Stores current pane that contains GUI components
+     * @param rightPanel Refers to the display panel showing all loaded data
+     */
+    public void addComponentsToPane(Container pane, DisplayPanel rightPanel) {
  
         pane.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -113,6 +134,9 @@ public class ApplicationGUI extends JFrame implements ActionListener {
         pane.add(statusBar, c);
     }
 
+    /**
+     * Handles the menu action event for displaying team info
+     */
     public void handleTeamInfo() {
         JPanel dPane = new JPanel();
         dPane.setLayout(new GridLayout(0,1));
@@ -127,11 +151,17 @@ public class ApplicationGUI extends JFrame implements ActionListener {
         d.setVisible(true);
     }
 
+    /**
+     * Handles the menu action event for plotting attendance data
+     */
     public void handlePlotData() {
         blackboard.setAction("Plot");
         blackboard.fileParsed();
     }
 
+    /**
+     * Handles the menu action event for loading and displaying student roster data
+     */
     public void handleLoadRoster() {
         blackboard.setAction("Load");
 
@@ -161,6 +191,9 @@ public class ApplicationGUI extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Handles the menu action event for loading and displaying student attendance data
+     */
     public void handleAddAttendance() {
 
         blackboard.setAction("Add");
@@ -197,6 +230,9 @@ public class ApplicationGUI extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Handles the menu action event for saving displayed student data
+     */
     public void handleSaveData() {
 
         JFileChooser fc = new JFileChooser();

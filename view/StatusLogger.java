@@ -4,6 +4,17 @@ import javax.swing.JLabel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class represents a model of the event logger for 
+ * all the major actions occurred in the application.
+ * It generates a JPanel and updates a nested JLabel to indicate 
+ * the latest action triggered by the user or the system.
+ * 
+ *
+ * @author Shrinkhala Kayastha
+ * @author Mukul Mahadik
+ * @version 1.0
+ */
 public class StatusLogger extends JPanel {
 
     private static volatile StatusLogger INSTANCE;
@@ -19,6 +30,10 @@ public class StatusLogger extends JPanel {
         add(BorderLayout.CENTER, statusLabel);
     }
 
+    
+    /** 
+     * Returns instantiated object of this class
+     */
     public static StatusLogger getInstance() {
         if (INSTANCE == null) {
             synchronized (StatusLogger.class) {
@@ -30,6 +45,11 @@ public class StatusLogger extends JPanel {
         return INSTANCE;
     }
 
+    
+    /** 
+     * Sets the status message to be displayed
+     * @param message Status message to be updated
+     */
     public void setMessage(String message) {
         if (message.equals(""))
             statusLabel.setText("Ready");

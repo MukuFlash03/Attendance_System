@@ -12,6 +12,16 @@ import java.text.ParseException;
 import java.util.Map;
 import java.util.HashMap;
 
+/**
+ * This class contains methods to handle input files pertaining to 
+ * student attendance data.
+ * Attendance data comprises the following columns for each row of student data
+ * 1. ASURITE - indicates unique alphabetic student ID
+ * 2. Minutes - indicates time in minutes for which student attended lecture
+ * 
+ * @author Shrinkhala Kayastha
+ * @version 1.0
+ */
 
 public class ParseAttendance {
 
@@ -28,6 +38,12 @@ public class ParseAttendance {
         this.extraAttendees = new HashMap<String, Integer>();
     }
 
+    
+    /** 
+     * Parses the user inputted student attendance files
+     * and extracts dates from filename
+     * @param file Files to be parsed
+     */
     public void parseAttendance(File[] files) {
 
 
@@ -50,6 +66,12 @@ public class ParseAttendance {
         blackboard.fileParsed();
     }
 
+    
+     /** 
+     * Parses the user inputted dated attendance file 
+     * and stores data into blackboard
+     * @param file File to be parsed
+     */
     public void parseAttendanceFile(File file, Date date) {
         String data, asurite;
         String[] tokens;

@@ -6,6 +6,17 @@ import javax.swing.JMenuBar;
 
 import java.util.LinkedHashMap;
 
+/**
+ * This class generates the menu bar for the application.
+ * It adds the following primary menu options with their respective sub menus.
+ * Additionally, it contains the metadata containing the project team information.
+ * 
+ *
+ * @author Shrinkhala Kayastha
+ * @author Mukul Mahadik
+ * @version 1.0
+ */
+
 public class MenuPanel {
 
     JMenuBar menuBar;
@@ -39,14 +50,26 @@ public class MenuPanel {
     }
 
 
+    
+    /** 
+     * Returns array of sub menu items 
+     */
     public JMenuItem[] getMenuOptions() {
         return options;
     }
 
+    
+    /** 
+     * Returns GUI MenuBar
+     */
     public JMenuBar getMenuBar() {
         return menuBar;
     }
 
+    
+    /** 
+     * Returns metadata containing team information
+     */
     public String[] getTeamInfo() {
         return teamInfo;
     }
