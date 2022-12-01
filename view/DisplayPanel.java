@@ -28,8 +28,8 @@ import java.awt.geom.AffineTransform;
  * 1. Roster and attendance data in tabular format.
  * 2. Plots containing datewise attendance data.
  *
+ * @author Sarvesh Kapse
  * @author Shrinkhala Kayastha
- * @author Mukul Mahadik
  * @version 1.0
  * */
 public class DisplayPanel extends JPanel implements Observer {

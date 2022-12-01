@@ -19,7 +19,7 @@ import java.util.HashMap;
  * 1. ASURITE - indicates unique alphabetic student ID
  * 2. Minutes - indicates time in minutes for which student attended lecture
  * 
- * @author Shrinkhala Kayastha
+ * @author Mukul Mahadik
  * @version 1.0
  */
 

@@ -9,8 +9,7 @@ import java.util.Objects;
  * and provides a user-defined datatype to represent the student object.
  * 
  *
- * @author Shrinkhala Kayastha
- * @author Mukul Mahadik
+ * @author Krithish Goli
  * @version 1.0
  */
 public class Student {

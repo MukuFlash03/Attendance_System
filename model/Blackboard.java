@@ -22,7 +22,7 @@ import java.util.LinkedHashMap;
  * It is used to achieve the functionality of notifying the Observer class DisplayPanel 
  * as soon as it updates its data.
  * 
- * @author Mukul Mahadik
+ * @author Shrinkhala Kayastha
  * @version 1.0
  */
 

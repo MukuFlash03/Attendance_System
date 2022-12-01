@@ -18,7 +18,7 @@ import java.util.TreeSet;
  * It contains methods to handle this attendance data.
  * 
  *
- * @author Shrinkhala Kayastha
+ * @author Aniket Agrawal
  * @author Mukul Mahadik
  * @version 1.0
  */

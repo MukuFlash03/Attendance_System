@@ -11,8 +11,7 @@ import java.awt.*;
  * the latest action triggered by the user or the system.
  * 
  *
- * @author Shrinkhala Kayastha
- * @author Mukul Mahadik
+ * @author Krithish Goli
  * @version 1.0
  */
 public class StatusLogger extends JPanel {

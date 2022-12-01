@@ -12,8 +12,7 @@ import java.util.LinkedHashMap;
  * Additionally, it contains the metadata containing the project team information.
  * 
  *
- * @author Shrinkhala Kayastha
- * @author Mukul Mahadik
+ * @author Sarvesh Kapse
  * @version 1.0
  */
 

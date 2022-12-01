@@ -14,7 +14,7 @@ import java.io.FileNotFoundException;
  * 3. Last Name - indicates student last name
  * 4. ASURITE - indicates unique alphabetic student ID
  * 
- * @author Shrinkhala Kayastha
+ * @author Mukul Mahadik
  * @version 1.0
  */
 public class ParseRoster {

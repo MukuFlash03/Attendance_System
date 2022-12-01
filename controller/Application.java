@@ -15,8 +15,11 @@ import javax.swing.SwingUtilities;
  * 1. Observer - Blackboard, DisplayPanel
  * 2. Singleton - Blackboard
  *
- * @author Shrinkhala Kayastha
  * @author Mukul Mahadik
+ * @author Aniket Agrawal
+ * @author Krithish Goli
+ * @author Sarvesh Kapse
+ * @author Shrinkhala Kayastha
  * @version 1.0
  */
 public class Application {
